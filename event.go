@@ -2,7 +2,7 @@ package event
 
 import "errors"
 
-// Arithmetic 算数比较逻辑
+// Arithmetic 算术比较逻辑
 type Arithmetic int
 
 const (

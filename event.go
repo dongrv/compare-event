@@ -87,7 +87,7 @@ func (ev *Event) Do(handlers []Condition, args []Argument, logic Logic) (bool, e
 	case LogicAnd: // 都满足条件
 		for k, v := range handlers {
 			b, err := v(args[k].Standard, args[k].Condition, args[k].Compare)
-			if b == false {
+			if !b {
 				return false, err
 			}
 		}
@@ -95,7 +95,7 @@ func (ev *Event) Do(handlers []Condition, args []Argument, logic Logic) (bool, e
 	case LogicOr: // 至少一个满足条件
 		for k, v := range handlers {
 			b, err := v(args[k].Standard, args[k].Condition, args[k].Compare)
-			if b == true {
+			if b {
 				return true, err
 			}
 		}
@@ -103,7 +103,7 @@ func (ev *Event) Do(handlers []Condition, args []Argument, logic Logic) (bool, e
 	case LogicNot: // 都不能满足条件
 		for k, v := range handlers {
 			b, err := v(args[k].Standard, args[k].Condition, args[k].Compare)
-			if b == true {
+			if b {
 				return false, err
 			}
 		}
